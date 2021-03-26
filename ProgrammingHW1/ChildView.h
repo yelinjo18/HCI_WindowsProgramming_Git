@@ -4,6 +4,7 @@
 
 
 #pragma once
+#include <afxtempl.h>
 
 
 // CChildView 창
@@ -16,7 +17,7 @@ public:
 
 // 특성입니다.
 public:
-
+	CList <CPoint, CPoint&> m_ptrlist;
 
 // 작업입니다.
 public:

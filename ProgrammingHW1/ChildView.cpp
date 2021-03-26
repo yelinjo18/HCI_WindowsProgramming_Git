@@ -20,6 +20,7 @@ CChildView::CChildView()
 
 CChildView::~CChildView()
 {
+	m_ptrlist.RemoveAll();
 }
 
 
@@ -49,8 +50,22 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 void CChildView::OnPaint() 
 {
 	CPaintDC dc(this); // 그리기를 위한 디바이스 컨텍스트입니다.
-	
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+
+	POSITION pos = m_ptrlist.GetHeadPosition();
+	while (pos != NULL)
+	{
+		CPoint pt = m_ptrlist.GetNext(pos);
+
+		dc.SelectStockObject(LTGRAY_BRUSH);
+		dc.Rectangle(pt.x - 50, pt.y - 50, pt.x + 50, pt.y + 50);
+
+		CBrush br(RGB(255, 0, 0));
+		dc.SelectObject(&br);
+		POINT tript[3] = { {pt.x, pt.y - 50}, {pt.x - 50, pt.y + 50},{pt.x + 50, pt.y + 50} };
+		dc.Polygon(tript, 3);
+	}
+
 	
 	// 그리기 메시지에 대해서는 CWnd::OnPaint()를 호출하지 마십시오.
 }
@@ -59,7 +74,8 @@ void CChildView::OnPaint()
 
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	// TODO
+
 
 	CWnd::OnLButtonDown(nFlags, point);
 }
@@ -67,7 +83,10 @@ void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CChildView::OnRButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	// TODO
+	m_ptrlist.AddTail(point);
+	CClientDC dc(this);
+	Invalidate(NULL);
 
 	CWnd::OnRButtonDown(nFlags, point);
 }
