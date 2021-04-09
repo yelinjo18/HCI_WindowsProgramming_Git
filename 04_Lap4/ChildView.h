@@ -18,6 +18,7 @@ public:
 public:
 	CArray <CPoint, CPoint&> m_ptrarray;
 	int m_index;
+	HENHMETAFILE m_hmf; // 메타파일 핸들
 
 // 작업입니다.
 public:

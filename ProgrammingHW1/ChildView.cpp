@@ -62,11 +62,9 @@ void CChildView::OnPaint()
 
 		CBrush br(RGB(255, 0, 0));
 		dc.SelectObject(&br);
-		POINT tript[3] = { {pt.x, pt.y - 50}, {pt.x - 50, pt.y + 50},{pt.x + 50, pt.y + 50} };
+		CPoint tript[3] = { CPoint(pt.x, pt.y - 50), CPoint(pt.x - 50, pt.y + 50),CPoint(pt.x + 50, pt.y + 50) };
 		dc.Polygon(tript, 3);
 	}
-
-	
 	// 그리기 메시지에 대해서는 CWnd::OnPaint()를 호출하지 마십시오.
 }
 
@@ -75,7 +73,20 @@ void CChildView::OnPaint()
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO
+	CClientDC dc(this);
 
+	CPen pen(PS_SOLID, 2, RGB(255, 0, 255));
+	dc.SelectObject(&pen);
+	dc.Ellipse(point.x - 50, point.y - 50, point.x + 50, point.y + 50);
+
+	CFont font;
+	font.CreatePointFont(150, CString("Arial"));
+	dc.SelectObject(&font);
+	dc.SetBkColor(RGB(255, 255, 0));
+	dc.SetTextColor(RGB(0, 0, 255));
+
+	CRect rect(point.x - 25, point.y - 25, point.x + 25, point.y + 25);
+	dc.DrawText(CString("HCI"), rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
 	CWnd::OnLButtonDown(nFlags, point);
 }
