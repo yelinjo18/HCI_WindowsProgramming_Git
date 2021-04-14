@@ -16,6 +16,9 @@ public:
 
 // 특성입니다.
 public:
+	// 실습 5-1 클라이언트 영역 마우스 메시지 처리
+	BOOL m_bDrawMode;
+	int x1, y1, x2, y2;
 
 // 작업입니다.
 public:
@@ -32,5 +35,9 @@ public:
 protected:
 	afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 };
 
