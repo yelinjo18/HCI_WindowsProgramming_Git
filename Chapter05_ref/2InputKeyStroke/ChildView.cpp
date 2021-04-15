@@ -28,6 +28,8 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_PAINT()
 	ON_WM_SIZE()
 	ON_WM_KEYDOWN()
+	ON_WM_SETFOCUS()
+	ON_WM_KILLFOCUS()
 END_MESSAGE_MAP()
 
 
@@ -52,6 +54,8 @@ void CChildView::OnPaint()
 	CPaintDC dc(this);
 	if(m_bFill == TRUE) dc.SelectStockObject(BLACK_BRUSH);
 	dc.Ellipse(m_xPos-20, m_yPos-20, m_xPos+20, m_yPos+20);
+	SetCaretPos(CPoint(m_xPos, m_yPos));
+	ShowCaret();
 }
 
 
@@ -81,8 +85,29 @@ void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		m_bFill = !m_bFill;
 	}
 	/* 20 <= m_xPos <= m_xMax-20 */
-	m_xPos = min(max(20, m_xPos), m_xMax-20);
+	m_xPos = min(max(0, m_xPos), m_xMax-20);
 	/* 20 <= m_yPos <= m_yMax-20 */
-	m_yPos = min(max(20, m_yPos), m_yMax-20);
+	m_yPos = min(max(0, m_yPos), m_yMax-20);
 	Invalidate();
+}
+
+
+void CChildView::OnSetFocus(CWnd* pOldWnd)
+{
+	CWnd::OnSetFocus(pOldWnd);
+	CreateSolidCaret(20, 20);
+	
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+}
+
+
+void CChildView::OnKillFocus(CWnd* pNewWnd)
+{
+	CWnd::OnKillFocus(pNewWnd);
+	CWnd::OnKillFocus(pNewWnd);
+	HideCaret();
+	::DestroyCaret();
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 }

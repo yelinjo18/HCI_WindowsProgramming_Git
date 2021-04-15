@@ -20,6 +20,11 @@ public:
 	BOOL m_bDrawMode;
 	int x1, y1, x2, y2;
 
+	// 실습 5-7 OnKeyDown
+	int m_xPos, m_yPos;	// 도형의 현재 위치
+	int m_xMax, m_yMax;	//클라이언트 영역의 크기
+	BOOL m_bFill;		// 도형 내부 채울지 여부
+
 // 작업입니다.
 public:
 
@@ -39,5 +44,9 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnSetFocus(CWnd* pOldWnd);
+	afx_msg void OnKillFocus(CWnd* pNewWnd);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 

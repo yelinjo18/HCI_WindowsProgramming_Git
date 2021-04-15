@@ -23,6 +23,7 @@ CChildView::CChildView()
 
 CChildView::~CChildView()
 {
+	m_mylist.RemoveAll();
 }
 
 
@@ -33,6 +34,8 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_RBUTTONDOWN()
 	ON_WM_RBUTTONDBLCLK()
+	ON_WM_SETFOCUS()
+	ON_WM_KILLFOCUS()
 END_MESSAGE_MAP()
 
 
@@ -183,4 +186,25 @@ void CChildView::OnRButtonDblClk(UINT nFlags, CPoint point)
 	// 초기화
 	// ClipCursor(NULL);
 	CWnd::OnRButtonDblClk(nFlags, point);
+}
+
+
+void CChildView::OnSetFocus(CWnd* pOldWnd)
+{
+	CWnd::OnSetFocus(pOldWnd);
+	CreateSolidCaret(20, 20);
+	SetCaretPos(CPoint(50, 50));
+	ShowCaret();
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+}
+
+
+void CChildView::OnKillFocus(CWnd* pNewWnd)
+{
+	CWnd::OnKillFocus(pNewWnd);
+	HideCaret();
+	::DestroyCaret();
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 }
