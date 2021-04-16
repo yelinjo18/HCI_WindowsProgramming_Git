@@ -105,7 +105,6 @@ void CChildView::OnSetFocus(CWnd* pOldWnd)
 void CChildView::OnKillFocus(CWnd* pNewWnd)
 {
 	CWnd::OnKillFocus(pNewWnd);
-	CWnd::OnKillFocus(pNewWnd);
 	HideCaret();
 	::DestroyCaret();
 

@@ -1,12 +1,12 @@
 ﻿
-// ProgrammingHW2.cpp: 애플리케이션에 대한 클래스 동작을 정의합니다.
+// HW2.cpp: 애플리케이션에 대한 클래스 동작을 정의합니다.
 //
 
 #include "pch.h"
 #include "framework.h"
 #include "afxwinappex.h"
 #include "afxdialogex.h"
-#include "ProgrammingHW2.h"
+#include "HW2.h"
 #include "MainFrm.h"
 
 
@@ -15,34 +15,34 @@
 #endif
 
 
-// CProgrammingHW2App
+// CHW2App
 
-BEGIN_MESSAGE_MAP(CProgrammingHW2App, CWinApp)
-	ON_COMMAND(ID_APP_ABOUT, &CProgrammingHW2App::OnAppAbout)
+BEGIN_MESSAGE_MAP(CHW2App, CWinApp)
+	ON_COMMAND(ID_APP_ABOUT, &CHW2App::OnAppAbout)
 END_MESSAGE_MAP()
 
 
-// CProgrammingHW2App 생성
+// CHW2App 생성
 
-CProgrammingHW2App::CProgrammingHW2App() noexcept
+CHW2App::CHW2App() noexcept
 {
 
 	// TODO: 아래 애플리케이션 ID 문자열을 고유 ID 문자열로 바꾸십시오(권장).
 	// 문자열에 대한 서식: CompanyName.ProductName.SubProduct.VersionInformation
-	SetAppID(_T("ProgrammingHW2.AppID.NoVersion"));
+	SetAppID(_T("HW2.AppID.NoVersion"));
 
 	// TODO: 여기에 생성 코드를 추가합니다.
 	// InitInstance에 모든 중요한 초기화 작업을 배치합니다.
 }
 
-// 유일한 CProgrammingHW2App 개체입니다.
+// 유일한 CHW2App 개체입니다.
 
-CProgrammingHW2App theApp;
+CHW2App theApp;
 
 
-// CProgrammingHW2App 초기화
+// CHW2App 초기화
 
-BOOL CProgrammingHW2App::InitInstance()
+BOOL CHW2App::InitInstance()
 {
 	CWinApp::InitInstance();
 
@@ -83,13 +83,13 @@ BOOL CProgrammingHW2App::InitInstance()
 	return TRUE;
 }
 
-int CProgrammingHW2App::ExitInstance()
+int CHW2App::ExitInstance()
 {
 	//TODO: 추가한 추가 리소스를 처리합니다.
 	return CWinApp::ExitInstance();
 }
 
-// CProgrammingHW2App 메시지 처리기
+// CHW2App 메시지 처리기
 
 
 // 응용 프로그램 정보에 사용되는 CAboutDlg 대화 상자입니다.
@@ -125,13 +125,13 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 // 대화 상자를 실행하기 위한 응용 프로그램 명령입니다.
-void CProgrammingHW2App::OnAppAbout()
+void CHW2App::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
 	aboutDlg.DoModal();
 }
 
-// CProgrammingHW2App 메시지 처리기
+// CHW2App 메시지 처리기
 
 
 

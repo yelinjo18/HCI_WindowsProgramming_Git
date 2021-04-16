@@ -1,10 +1,10 @@
 ﻿//{{NO_DEPENDENCIES}}
 // Microsoft Visual C++에서 생성한 포함 파일입니다.
-// ProgrammingHW2.rc에서 사용
+// HW2.rc에서 사용
 //
 #define IDD_ABOUTBOX				100
 #define IDR_MAINFRAME				128
-#define IDR_ProgrammingHW2TYPE				130
+#define IDR_HW2TYPE				130
 
 // 다음은 새 개체에 사용할 기본값입니다.
 //

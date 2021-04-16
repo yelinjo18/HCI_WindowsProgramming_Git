@@ -23,6 +23,7 @@ public:
 	CPoint m_start, m_end;
 	BOOL m_found;
 	POSITION m_foundpos;
+	CString m_str;
 
 // 작업입니다.
 public:
@@ -47,5 +48,7 @@ public:
 	afx_msg void OnRButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	afx_msg void OnKillFocus(CWnd* pNewWnd);
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 

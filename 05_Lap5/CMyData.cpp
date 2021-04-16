@@ -31,6 +31,16 @@ void CMyData::SetEndPoint(CPoint pt)
 	m_myend = pt;
 }
 
+void CMyData::SetStr(CString str)
+{
+	m_mystr = str;
+}
+
+void CMyData::SetPenColor(COLORREF col)
+{
+	m_pencolor = col;
+}
+
 CPoint* CMyData::GetStartPoint()
 {
 	return &m_mystart;
@@ -38,4 +48,14 @@ CPoint* CMyData::GetStartPoint()
 CPoint* CMyData::GetEndPoint()
 {
 	return &m_myend;
+}
+
+CString* CMyData::GetStr()
+{
+	return &m_mystr;
+}
+
+COLORREF* CMyData::GetPenColor()
+{
+	return &m_pencolor;
 }

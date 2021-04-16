@@ -36,6 +36,8 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_RBUTTONDBLCLK()
 	ON_WM_SETFOCUS()
 	ON_WM_KILLFOCUS()
+	ON_WM_KEYDOWN()
+	ON_WM_CHAR()
 END_MESSAGE_MAP()
 
 
@@ -58,18 +60,30 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 void CChildView::OnPaint() 
 {
 	CPaintDC dc(this); // 그리기를 위한 디바이스 컨텍스트입니다.
+
+	CFont font;
+	font.CreatePointFont(150, _T("궁서"));
+	dc.SelectObject(&font);
 	
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	if (m_mylist.GetSize() > 0)
 	{
 		dc.SelectStockObject(NULL_BRUSH);
+
 		POSITION pos = m_mylist.GetHeadPosition();
 		while (pos != NULL)
 		{
 			m_curData = m_mylist.GetNext(pos);
 			m_start = *m_curData.GetStartPoint();
 			m_end = *m_curData.GetEndPoint();
-			dc.Rectangle(m_start.x, m_start.y, m_end.x, m_end.y);
+			COLORREF col = *m_curData.GetPenColor();
+			CPen pen(PS_SOLID, 1, col);
+			dc.SelectObject(&pen);
+
+			CRect rect(m_start.x, m_start.y, m_end.x, m_end.y);
+			dc.Rectangle(rect);
+			//dc.DrawText(m_str, &rect,0);
+			
 		}
 	}
 	
@@ -107,6 +121,8 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 	// 리스트에 CMyData 추가
 	m_curData.SetStartPoint(m_start);
 	m_curData.SetEndPoint(m_end);
+	m_curData.SetStr(CString(""));
+	//m_curData.SetPenColor(RGB(0, 0, 0));
 	m_mylist.AddTail(m_curData);
 
 	Invalidate();
@@ -154,6 +170,7 @@ void CChildView::OnRButtonDown(UINT nFlags, CPoint point)
 		POSITION pos = m_mylist.GetHeadPosition();
 		while (pos != NULL)
 		{
+			m_foundpos = pos;
 			m_curData = m_mylist.GetNext(pos);
 			m_start = *m_curData.GetStartPoint();
 			m_end = *m_curData.GetEndPoint();
@@ -161,7 +178,13 @@ void CChildView::OnRButtonDown(UINT nFlags, CPoint point)
 			if (rect.PtInRect(point))
 			{
 				// 사각형 발견, 주소 foundpos 저장
+				m_mylist.GetAt(m_foundpos).SetPenColor(RGB(255, 0, 0));
+				pos = NULL;
+
 			}
+			else
+				m_foundpos = NULL;
+
 		}
 	}
 
@@ -181,7 +204,12 @@ void CChildView::OnRButtonDblClk(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (m_foundpos != NULL)
-		// 빨간색->
+	{
+		//m_mylist.GetAt(m_foundpos).SetPencolor(RGB(255, 0, 0));
+		m_foundpos = NULL;
+
+	}
+		
 	
 	// 초기화
 	// ClipCursor(NULL);
@@ -207,4 +235,65 @@ void CChildView::OnKillFocus(CWnd* pNewWnd)
 	::DestroyCaret();
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+}
+
+
+void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	if (m_foundpos != NULL)
+	{
+		m_curData = m_mylist.GetAt(m_foundpos);
+		m_start = *m_curData.GetStartPoint();
+		m_end = *m_curData.GetEndPoint();
+		
+		switch (nChar) {
+		case VK_LEFT:
+			m_start.x -= 20;
+			m_end.x -= 20;
+			break;
+		case VK_RIGHT:
+			m_start.x += 20;
+			m_end.x += 20;
+			break;
+		case VK_UP:
+			m_start.y -= 20;
+			m_end.y -= 20;
+			break;
+		case VK_DOWN:
+			m_start.y += 20;
+			m_end.y += 20;
+			break;
+		
+		}
+
+		m_mylist.GetAt(m_foundpos).SetStartPoint(m_start);
+		m_mylist.GetAt(m_foundpos).SetEndPoint(m_end);
+		
+		Invalidate();
+	}
+
+	CWnd::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+
+void CChildView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// Backspace 입력 시 맨 마지막 글자를 삭제한다.
+	if (m_foundpos != NULL)
+	{
+		//CString str = m_mylist.GetAt(m_foundpos).GetStr();
+		if (nChar == _T('\b')) {
+			if (m_str.GetLength() > 0)
+				m_str.Delete(m_str.GetLength() - 1, 1);
+		}
+		// 그 밖의 경우에는 동적 배열에 글자를 추가한다.
+		else {
+			m_str.AppendChar(nChar);
+		}
+
+		// 화면을 갱신한다.
+		Invalidate();
+	}
+	CWnd::OnChar(nChar, nRepCnt, nFlags);
 }

@@ -1,5 +1,5 @@
 ﻿
-// ProgrammingHW2.h: ProgrammingHW2 애플리케이션의 기본 헤더 파일
+// HW2.h: HW2 애플리케이션의 기본 헤더 파일
 //
 #pragma once
 
@@ -10,14 +10,14 @@
 #include "resource.h"       // 주 기호입니다.
 
 
-// CProgrammingHW2App:
-// 이 클래스의 구현에 대해서는 ProgrammingHW2.cpp을(를) 참조하세요.
+// CHW2App:
+// 이 클래스의 구현에 대해서는 HW2.cpp을(를) 참조하세요.
 //
 
-class CProgrammingHW2App : public CWinApp
+class CHW2App : public CWinApp
 {
 public:
-	CProgrammingHW2App() noexcept;
+	CHW2App() noexcept;
 
 
 // 재정의입니다.
@@ -32,4 +32,4 @@ public:
 	DECLARE_MESSAGE_MAP()
 };
 
-extern CProgrammingHW2App theApp;
+extern CHW2App theApp;

@@ -3,7 +3,9 @@
 //
 
 #pragma once
+#include <afxtempl.h>
 #include "CMyData.h"
+
 
 // CChildView 창
 
@@ -16,6 +18,11 @@ public:
 // 특성입니다.
 public:
 	CList <CMyData, CMyData&> my_lst;
+	CMyData m_curData;
+	BOOL isDrawMode;		// LButtonDown인 상태인지 확인
+	CPoint m_st, m_ed;		
+	POSITION found_pos;		// 선택한 Rectangle의 POSITION
+	BOOL isfound;			// 선택한 Rectangle이 있는지 확인
 
 // 작업입니다.
 public:
@@ -36,5 +43,9 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnRButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 

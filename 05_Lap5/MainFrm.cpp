@@ -124,13 +124,6 @@ BOOL CMainFrame::OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO*
 void CMainFrame::OnNcLButtonDown(UINT nHitTest, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-	// 실습 5-3 비클라이언트 마우스 메시지 처리
-	// 종료 버튼을 누른 경우
-	if (nHitTest == HTCLOSE)
-		MessageBox(CString("여기를 눌러도 종료할 수 없습니다."), CString("테스트"));
-	// 그 밖의 경우는 운영체제가 알아서 처리
-	else
-		CFrameWnd::OnNcLButtonDown(nHitTest, point);
 
 	CFrameWnd::OnNcLButtonDown(nHitTest, point);
 }

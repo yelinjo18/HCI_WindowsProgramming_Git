@@ -9,10 +9,12 @@ public:
 	void SetStartPoint(CPoint pt);
 	void SetEndPoint(CPoint pt);
 	void SetStr(CString str);
+	void SetPenColor(COLORREF col);
 	//...
 	CPoint* GetStartPoint();
 	CPoint* GetEndPoint();
 	CString* GetStr();
+	COLORREF* GetPenColor();
 
 private:
 	CPoint m_mystart;

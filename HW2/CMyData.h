@@ -1,6 +1,7 @@
 #pragma once
 class CMyData
 {
+public:
 	CMyData();
 	CMyData(CPoint st, CPoint ed, COLORREF col, CString str);
 	~CMyData();

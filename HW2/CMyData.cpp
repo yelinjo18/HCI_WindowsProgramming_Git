@@ -23,12 +23,12 @@ CMyData::~CMyData()
 }
 
 
-void CMyData::SetStPoint(CPoint st)		{ m_mystart = st; }
-void CMyData::SetEdPoint(CPoint ed)		{ m_myend = ed; }
+void CMyData::SetStPoint(CPoint st) { m_mystart = st; }
+void CMyData::SetEdPoint(CPoint ed) { m_myend = ed; }
 void CMyData::SetPenColor(COLORREF col) { m_pencolor = col; }
-void CMyData::SetString(CString str)	{ m_mystr = str; }
+void CMyData::SetString(CString str) { m_mystr = str; }
 
-CPoint*		CMyData::GetStPoint()	{ return &m_mystart; }
-CPoint*		CMyData::GetEdPoint()	{ return &m_myend; }
-COLORREF*	CMyData::GetPenColor()	{ return &m_pencolor; }
-CString*	CMyData::GetString()	{ return &m_mystr; }
+CPoint* CMyData::GetStPoint() { return &m_mystart; }
+CPoint* CMyData::GetEdPoint() { return &m_myend; }
+COLORREF* CMyData::GetPenColor() { return &m_pencolor; }
+CString* CMyData::GetString() { return &m_mystr; }
