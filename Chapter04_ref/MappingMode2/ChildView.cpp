@@ -54,5 +54,8 @@ void CChildView::OnPaint()
 	dc.RoundRect(0, 0, 100, 100, 50, 50);
 	dc.DrawEdge(CRect(20, 20, 80, 80),
 		BDR_SUNKENINNER|BDR_RAISEDOUTER, BF_RECT);
+
+	CPoint point(40, 50);
+	ScreenToClient(&point);
 }
 

@@ -65,7 +65,6 @@ void CChildView::OnPaint()
 	font.CreatePointFont(150, _T("궁서"));
 	dc.SelectObject(&font);
 	
-	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	if (m_mylist.GetSize() > 0)
 	{
 		dc.SelectStockObject(NULL_BRUSH);
@@ -82,6 +81,7 @@ void CChildView::OnPaint()
 
 			CRect rect(m_start.x, m_start.y, m_end.x, m_end.y);
 			dc.Rectangle(rect);
+			
 			//dc.DrawText(m_str, &rect,0);
 			
 		}
@@ -193,7 +193,7 @@ void CChildView::OnRButtonDown(UINT nFlags, CPoint point)
 	CRect rect(10, 10, 300, 300);
 	dc.Rectangle(rect);
 	ClientToScreen(rect);
-	ClipCursor(rect
+	ClipCursor(rect);
 	*/
 
 	CWnd::OnRButtonDown(nFlags, point);
@@ -231,6 +231,7 @@ void CChildView::OnSetFocus(CWnd* pOldWnd)
 void CChildView::OnKillFocus(CWnd* pNewWnd)
 {
 	CWnd::OnKillFocus(pNewWnd);
+
 	HideCaret();
 	::DestroyCaret();
 

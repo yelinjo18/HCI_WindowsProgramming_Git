@@ -56,6 +56,7 @@ void CChildView::OnPaint()
 	dc.Ellipse(m_xPos-20, m_yPos-20, m_xPos+20, m_yPos+20);
 	SetCaretPos(CPoint(m_xPos, m_yPos));
 	ShowCaret();
+
 }
 
 

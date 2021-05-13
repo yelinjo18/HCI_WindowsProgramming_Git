@@ -96,7 +96,7 @@ void CChildView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO
 	m_ptrlist.AddTail(point);
-	CClientDC dc(this);
+
 	Invalidate(NULL);
 
 	CWnd::OnRButtonDown(nFlags, point);
